@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>WebSocket Test - SockJS + STOMP</title>
+<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/bundles/stomp.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script language="javascript" type="text/javascript">
+  window.addEventListener("load", () => {
+    const frame = new StompJs.Frame({
+      command: "SEND",
+      headers: {
+        "x-firefox-test": true,
+      },
+      body: JSON.stringify([{ key: "value" }]),
+    });
+
+    const socket = new WebSocket("ws://localhost:5001/ws");
+    socket.onopen = () => socket.send(frame.serialize());
+
+    // const sockjs = new SockJS("http://localhost:5001/sock");
+    // sockjs.onopen = () => sockjs.send(frame.serialize());
+  });
+</script>
+
+<h2>WebSocket Test</h2>
+<p>Open the devtools and check the network panel.</p>
