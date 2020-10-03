@@ -13,11 +13,11 @@
       body: JSON.stringify([{ key: "value" }]),
     });
 
-    const socket = new WebSocket("ws://localhost:5001/ws");
-    socket.onopen = () => socket.send(frame.serialize());
+    // const socket = new WebSocket("ws://localhost:5001/ws");
+    // socket.onopen = () => socket.send(frame.serialize());
 
-    // const sockjs = new SockJS("http://localhost:5001/sock");
-    // sockjs.onopen = () => sockjs.send(frame.serialize());
+    const sockjs = new SockJS("http://localhost:5001/sock");
+    sockjs.onopen = () => sockjs.send(frame.serialize());
   });
 </script>
 
